@@ -1,1 +1,2 @@
-# Core-Four-hackpoly2017
+# Core Four - HackPoly 2017
+## Nishir Shelat, Teresa Liu, Ethan Yu, Daniel Koo
