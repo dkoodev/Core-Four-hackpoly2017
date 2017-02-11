@@ -24,9 +24,20 @@
   </div>
 
   <div class="demo-frame">
-    <div class="demo-container">
-      <video id="video" width="320" height="240" preload autoplay loop muted></video>
-      <canvas id="canvas" width="320" height="240"></canvas>
+    <div class="demo-container" style="position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100">
+      <video style="
+      position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%" id="video"  preload autoplay loop muted></video>
+      <canvas id="canvas" ></canvas>
     </div>
   </div>
 
