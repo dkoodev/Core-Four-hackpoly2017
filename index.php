@@ -4,40 +4,20 @@
   <meta charset="utf-8">
   <title>tracking.js - face with camera</title>
   <link rel="stylesheet" href="assets/demo.css">
+  <link rel="stylesheet" type="text/css" href="main.css">
 
   <script src="../build/tracking-min.js"></script>
   <script src="../build/data/face-min.js"></script>
    <script src="../node_modules/dat.gui/build/dat.gui.min.js"></script>
   <script src="assets/stats.min.js"></script>
 
-  <style>
-  video, canvas {
-    margin-left: 230px;
-    margin-top: 120px;
-    position: absolute;
-  }
-  </style>
 </head>
 <body>
-  <div class="demo-title">
-    <p><a href="http://trackingjs.com" target="_parent">tracking.js</a> － get user's webcam and detect faces</p>
-  </div>
 
   <div class="demo-frame">
-    <div class="demo-container" style="position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-    z-index: -100">
-      <video style="
-      position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%" id="video"  preload autoplay loop muted></video>
-      <canvas id="canvas" ></canvas>
+    <div class="demo-container">
+      <video id="video" preload autoplay loop muted></video>
+      <canvas id="canvas"></canvas>
     </div>
   </div>
 

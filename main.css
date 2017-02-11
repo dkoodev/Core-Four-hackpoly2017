@@ -6,7 +6,7 @@ body {
 	padding: 0;
 }
 
-#video {
+.demo-container {
 	position: fixed;
     top: 0;
     right: 0;
@@ -16,8 +16,8 @@ body {
     z-index: -100;
 }
 
-#video video {
-	 position: absolute;
+#video {
+	position: absolute;
     top: 0;
     left: 0;
     width: 100%;
