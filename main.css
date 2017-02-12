@@ -110,9 +110,20 @@ body {
     font-family: futura;
     letter-spacing: 0.5px;
 
-    transition:all 2s ease-in;
-
 }
+
+.transcriptTranslation {
+    color: black;
+    background-color: ;
+    margin: 5px 10px 5px 25px;
+    padding: 7px;
+    border-radius: 5px;
+
+    background: #FAE9C1; /* For browsers that do not support gradients */
+    font-family: futura;
+    letter-spacing: 0.5px;
+}
+
 #lang_select {
     position: absolute;
     bottom: 10px;
