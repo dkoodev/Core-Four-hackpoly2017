@@ -2,7 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Bubble Bot</title>
+  <title>HelloMundo</title>
+  <link rel="icon" href="img/bubble.png">
   <link rel="stylesheet" type="text/css" href="main.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script scr="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -10,6 +11,7 @@
   <script src="../build/tracking-min.js"></script>
   <script src="../build/data/face-min.js"></script>
   <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+
   <style>
   video, canvas {
     position: absolute;
@@ -28,10 +30,10 @@
     </div>
   </div>
 
-  <div id="transcript"><h1 id="speechlog">Speech Log</h1></div>
+  <div id="transcript" style="overflow-y: scroll;"><h1 id="speechlog">speech log</h1></div>
 
   <div id="langContainer">
-  <h3 class="direction">Starting Language:</h3>
+  <h3 class="direction">starting language:</h3>
     <select id="lang_select" value="en" onchange="partialReset()">
       <option value="en">English</option>
       <option value="zh-CN">Chinese (Simplified)</option>
@@ -45,7 +47,7 @@
       <option value="ko">Korea</option>
       <option value="ru">Russian</option>
     </select>
-  <h3 class="direction">Target Language:</h3>
+  <h3 class="direction">target language:</h3>
     <select id="lang_select_target" value="es">
       <option value="en">English</option>
       <option value="zh-CN">Chinese (Simplified)</option>
@@ -68,6 +70,8 @@
   <span class="textbubble" id="interim"></span>
 
 </div>
+
+<img class="logo" src="img/mainlogo.png"/>
 </body>
 
 

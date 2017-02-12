@@ -15,6 +15,15 @@ body {
     padding: 0;
 }
 
+.logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 60px;
+    width: 60px;
+}
+
+
 #video {
     position: absolute;
     top: 50%;
@@ -77,16 +86,16 @@ body {
     padding: 7px;
     border-radius: 5px;
 }
-
-
 #speechlog {
+    position: fixed;
+    width: 262px;
     background-color: #002B36;
     padding: 10px;
     color: white;
     padding-top: 17px;
     margin-top: 10px;
-
-
+    letter-spacing: 1px;
+    border-bottom: 2px solid white;
 }
 
 #transcript {
@@ -94,7 +103,7 @@ body {
     margin: 10px;
     color: black;
     width: 22%;
-    height: 100vh;
+    height: 80vh;
     font-family: futura;
     background: -webkit-linear-gradient(#E64A2D, #ECA534); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(#E64A2D, #ECA534); /* For Opera 11.1 to 12.0 */
@@ -136,6 +145,11 @@ body {
     background-color: black;
     transition: all 0.4s ease-in-out;
 
+    background: -webkit-linear-gradient(#EB9D33, #EAC851); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#EB9D33, #EAC851); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#EB9D33, #EAC851); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#EB9D33, #EAC851);
+
 }
 
 #langContainer:hover {
@@ -143,7 +157,7 @@ body {
     background-color: #262627;
 }
 #lang_select {
-    margin: -5px 10px 0px 10px;
+    margin: -15px 10px 0px 10px;
     font-size: 14px;
     width: 90%;
     font-family: futura;
@@ -151,19 +165,21 @@ body {
 }
 
 #lang_select_target {
-    margin: -5px 10px 20px 10px;
+    margin: -10px 10px 15px 10px;
     font-size: 14px;
     width: 90%;
     font-family: futura;
     text-align: center;
 }
 .direction {
+    border-top: 2px dotted white;
     font-family: futura;
     margin-left: 10px;
     font-size: 16px;
     color: white;
     transition: all 0.4s ease-in-out;
-
+    padding-top:2px;
+    margin: 13px 10px 10px 10px;
 }
 #translatedText {
     color: white;
