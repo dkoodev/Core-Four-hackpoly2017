@@ -1,12 +1,18 @@
+
+
+
 <!doctype html>
 <html>
 <head>
   <meta charset="utf-8">
   <title>Bubble Bot</title>
-  <link rel="stylesheet" href="assets/demo.css">
   <link rel="stylesheet" type="text/css" href="main.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script scr="http://code.jquery.com/jquery-latest.min.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-
+  <script src="../build/tracking-min.js"></script>
+  <script src="../build/data/face-min.js"></script>
+   <script src="../node_modules/dat.gui/build/dat.gui.min.js"></script>
   <style>
   video, canvas {
     position: absolute;
@@ -14,6 +20,7 @@
   </style>
 </head>
 <body>
+  <div ng-app="myApp" ng-controller="myCtrl"> 
 
 <div id="message"></div>
 
@@ -37,16 +44,38 @@
   <span class="textbubble" id="speech"></span>
   <span class="textbubble" id="interim"></span>
 
+</div>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="script.js"></script>
-<script src="../build/tracking-min.js"></script>
-<script src="../build/data/face-min.js"></script>
-<script src="../node_modules/dat.gui/build/dat.gui.min.js"></script>
-<script src="assets/stats.min.js"></script>
-<script src="../build/data/mouth.js"></script>
+
 
 <script>
+
+function httpGetAsync(theUrl, callback)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+    xmlHttp.send(null);
+}
+
+function setTranscription(final_transcript){
+  transcription = document.getElementById('speech');
+
+  obj = JSON.parse(final_transcript);
+  real_obj = obj['data']['translations'][0]['translatedText'];
+  real_obj.replace('&#39;', '');
+  console.log(real_obj.length-1);
+  transcription.innerHTML = real_obj;
+  console.log(real_obj);
+
+}
+
+// { "data": { "translations": [ { "translatedText": "'" } ] } }
+
+  var rectW;
   setInterval(function() {
     // Create the event
     var event = new CustomEvent("name-of-event", { "detail": "Example of an event" });
@@ -107,7 +136,7 @@
       var video = document.getElementById('video');
       var canvas = document.getElementById('canvas');
       var context = canvas.getContext('2d');
-      var tracker = new tracking.ObjectTracker('face');
+      var tracker = new tracking.ObjectTracker("face");
       tracker.setInitialScale(4);
       tracker.setStepSize(2);
       tracker.setEdgesDensity(0.1);
@@ -124,7 +153,7 @@
           x = rect.x;
           y = rect.y;
           rectW = rect.width;
-          console.log(rectW);
+          // console.log(rectW);
         });
       });
       var gui = new dat.GUI();
@@ -142,10 +171,6 @@
       $(".textbubble").animate({top: trueY, left: trueX}, 50);
       // document.body.appendChild(div);
     });
-
-  </script>
-
-  <script>
 
       if (!(window.webkitSpeechRecognition) && !(window.speechRecognition)) {
         upgrade();
@@ -177,6 +202,8 @@
             recognizing = true;
         };
 
+    
+
         speech.onresult = function(event) {
           // When recognition produces result
           var interim_transcript = '';
@@ -186,12 +213,20 @@
           for (var i = event.resultIndex; i < event.results.length; ++i) {
             if (event.results[i].isFinal) {
               final_transcript += event.results[i][0].transcript;
+              var query = final_transcript;
+              query=encodeURIComponent(query.trim());
+              var source = 'en';
+              var target = 'ko';
+              var x = 'https://translation.googleapis.com/language/translate/v2?key=AIzaSyCa-LCaNth2vVBexvnQtja_wvXNp5rozhQ&source='+source+'&target='+target+ '&q=' + query+'\'';
+              console.log(x);
+              httpGetAsync(x, setTranscription);
+              interim_span.innerHTML = interim_transcript;
             } else {
               interim_transcript += event.results[i][0].transcript;
             }
           }
-          transcription.innerHTML = final_transcript;
-          interim_span.innerHTML = interim_transcript;
+
+
           if(final_transcript != "") {
 
             var div = document.createElement("div");

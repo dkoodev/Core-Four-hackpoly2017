@@ -120,3 +120,7 @@ body {
     font-size: 14px;
     width: 20%;
 }
+
+#translatedText {
+    color: white;
+}

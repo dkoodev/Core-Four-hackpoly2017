@@ -1,1 +1,0 @@
-$(".textbubble").animate({color: 'red'});
