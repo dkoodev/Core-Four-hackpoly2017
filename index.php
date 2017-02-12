@@ -21,8 +21,8 @@
 
   <div class="demo-frame">
     <div class="demo-container">
-      <video id="video" width="50%" height="100%" preload autoplay loop muted></video>
-      <canvas style="display: none" id="canvas" width="50%" height="100%"></canvas>
+      <video id="video" width="320" height="240" preload autoplay loop muted></video>
+      <canvas id="canvas" width="320" height="240"></canvas>
     </div>
   </div>
 
@@ -69,9 +69,9 @@
     // Add an event listener
     document.addEventListener("name-of-event", function(e) {
       var div = document.getElementsByClassName('textbubble')[0];
-      var trueX = x + 170;
-      var trueY = y + 170;
-      console.log(trueX);
+
+      var trueX = 2.2 * x + 500;
+      var trueY = 2.2 * y + 200;
       div.innerHTML = "Hello!";
       div.style.top = trueY + "px";
       div.style.left = trueX + "px";
