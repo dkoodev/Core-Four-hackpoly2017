@@ -32,11 +32,18 @@
 
   <div id="transcript"><h1 id="speechlog">Speech Log</h1></div>
 
-  <select id="lang_select" onchange="lang_change()">
-    <option value="1">English</option>
-    <option value="2">Chinese (Simplified)</option>
-    <option value="3">Spanish</option>
-    <option value="4">French</option>
+  <select id="lang_select" value="en" onchange="partialReset()">
+    <option value="en">English</option>
+    <option value="zh-CN">Chinese (Simplified)</option>
+    <option value="es">Spanish</option>
+    <option value="fr">French</option>
+  </select>
+
+  <select id="lang_select_target" value="es" style="bottom: 100px; position: absolute">
+    <option value="en">English</option>
+    <option value="zh-CN">Chinese (Simplified)</option>
+    <option value="es">Spanish</option>
+    <option value="fr">French</option>
   </select>
 
 
@@ -93,7 +100,7 @@ function setTranscription(final_transcript){
   var x;
   var y;
 
-  var language = "en-US";
+  var language = "es";
 
   // $(function () {
   //       $("#lang_select").change(function () {
@@ -103,41 +110,6 @@ function setTranscription(final_transcript){
   //       });
   //   });
 
-  function lang_change() {
-    if (document.getElementById("lang_select").value == "1"){
-        language = "en-US";
-        recognizing = false;
-        speech.lang = "en-US";
-        interim_span.innerHTML = '';
-        transcription.innerHTML = '';
-        speech.start();
-    }     
-    else if (document.getElementById("lang_select").value == "2"){
-        language = "zh-TW";
-        recognizing = false;
-        speech.lang = "zh-TW";
-        interim_span.innerHTML = '';
-        transcription.innerHTML = '';
-        speech.start();
-        
-    }  
-    else if (document.getElementById("lang_select").value == "3"){
-        language = "es-MX";
-        recognizing = false;
-        speech.lang = "es-MX";
-        interim_span.innerHTML = '';
-        transcription.innerHTML = '';
-        speech.start();
-    }  
-    else if (document.getElementById("lang_select").value == "4"){
-        language = "fr-FR";
-        recognizing = false;
-        speech.lang = "fr-FR";
-        interim_span.innerHTML = '';
-        transcription.innerHTML = '';
-        speech.start();
-    }        
-}
 
     window.onload = function() {
       var video = document.getElementById('video');
@@ -183,6 +155,16 @@ function setTranscription(final_transcript){
           interim_span.innerHTML = '';
           transcription.innerHTML = '';
           speech.start();
+          recognizing = true;
+        }
+
+        function partialReset() {
+          speech.stop();
+          recognizing = false;
+          language = document.getElementById("lang_select").value;
+          speech.lang = language;
+          speech.start();
+          recognizing = true;
         }
 
         var speech = new webkitSpeechRecognition() || speechRecognition();
@@ -206,18 +188,20 @@ function setTranscription(final_transcript){
 
           // main for loop for final and interim results
           for (var i = event.resultIndex; i < event.results.length; ++i) {
+            var source = document.getElementById("lang_select").value;
+            var target = document.getElementById("lang_select_target").value;
             if (event.results[i].isFinal) {
+              document.getElementById('interim').innerHTML = "";
               final_transcript += event.results[i][0].transcript;
               var query = final_transcript;
               query=encodeURIComponent(query.trim());
-              var source = 'en';
-              var target = 'ko';
               var x = 'https://translation.googleapis.com/language/translate/v2?key=AIzaSyCa-LCaNth2vVBexvnQtja_wvXNp5rozhQ&source='+source+'&target='+target+ '&q=' + query+'\'';
               console.log(x);
               httpGetAsync(x, setTranscription);
-              interim_span.innerHTML = interim_transcript;
             } else {
+              document.getElementById('speech').innerHTML = "";
               interim_transcript += event.results[i][0].transcript;
+              interim_span.innerHTML = interim_transcript;
             }
           }
 
