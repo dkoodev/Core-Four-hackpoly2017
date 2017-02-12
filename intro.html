@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HelloMundo</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		.background {
+			height: 110vh;
+			width: 100%;
+			overflow: hidden;
+			font-family: futura;
+		    background: -webkit-linear-gradient(#E64A2D, #ECA534); /* For Safari 5.1 to 6.0 */
+		    background: -o-linear-gradient(#E64A2D, #ECA534); /* For Opera 11.1 to 12.0 */
+		    background: -moz-linear-gradient(#E64A2D, #ECA534); /* For Firefox 3.6 to 15 */
+		    background: linear-gradient(#E64A2D, #ECA534);
+		    text-align: center;
+		    color: white;
+		}
+		.inner{
+			position: absolute;
+			top: 38%;
+			left: 50%;
+			border: 2px solid white;
+			height: 300px;
+			width: 300px;
+			transform: translate(-50%, -50%);
+			transition: all 1s ease-in-out;
+
+		background: -webkit-linear-gradient(#E7552E,#E97A31); /* For Safari 5.1 to 6.0 */
+		    background: -o-linear-gradient(#E7552E,#E97A31); /* For Opera 11.1 to 12.0 */
+		    background: -moz-linear-gradient(#E7552E,#E97A31); /* For Firefox 3.6 to 15 */
+		    background: linear-gradient(#E7552E,#E97A31);
+		}
+
+		.inner:hover {
+			left: 25%;
+			opacity: 0.5;
+
+		}
+		img {
+			height: 250px;
+			text-align: center;
+			padding-right: 20px;
+			padding-top: 20px
+		}
+
+		.info {
+			position: absolute;
+			top: 46%;
+			left: 50%;
+			height: 300px;
+			width: 300px;
+			transform: translate(-50%, -50%);
+			padding: 100px;
+		}
+
+		a {
+			position: absolute;
+			top:67%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			text-decoration: none;
+			color: #E97A31;
+			font-size: 30px;
+			background-color: white;
+			padding: 10px 108px;
+			transition: all 0.4s ease-in-out;
+		}
+
+		a:hover {
+			background-color: rgba(0, 0, 0, .5);
+			color: white;
+		}
+		p {
+			font-size: 24px;
+			line-height: 20px;
+		}
+
+	</style>
+
+</head>
+<body>
+ <div class="background">
+  	<div class="info">
+		<p>select your languages</p>
+		<p>speak into the microphone</p>
+		<p>watch the magic</p>
+	</div>
+ 	<div class="box">
+		<div class="inner">
+			<img src="img/whitelogo.png"/>
+		</div>
+		<a href="index.php">start ></a>
+	</div>
+ </div>
+
+
+
+</body>
+</html>
