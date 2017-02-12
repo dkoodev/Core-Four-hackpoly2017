@@ -12,7 +12,6 @@
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script src="../build/tracking-min.js"></script>
   <script src="../build/data/face-min.js"></script>
-   <script src="../node_modules/dat.gui/build/dat.gui.min.js"></script>
   <style>
   video, canvas {
     position: absolute;
@@ -61,6 +60,13 @@ function httpGetAsync(theUrl, callback)
     xmlHttp.send(null);
 }
 
+function saveConvo(obj) {
+    var div2 = document.createElement("div");
+    div2.innerHTML = real_obj;
+    div2.className = "transcriptTranslation";
+    document.getElementById("transcript").appendChild(div2);
+}
+
 function setTranscription(final_transcript){
   transcription = document.getElementById('speech');
 
@@ -70,6 +76,7 @@ function setTranscription(final_transcript){
   console.log(real_obj.length-1);
   transcription.innerHTML = real_obj;
   console.log(real_obj);
+  saveConvo(real_obj);
 
 }
 
@@ -144,27 +151,15 @@ function setTranscription(final_transcript){
       tracker.on('track', function(event) {
         context.clearRect(0, 0, canvas.width, canvas.height);
         event.data.forEach(function(rect) {
-          context.strokeStyle = '#a64ceb';
-          context.strokeRect(rect.x, rect.y, rect.width, rect.height);
-          context.font = '11px Helvetica';
-          context.fillStyle = "#fff";
-          context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
-          context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
           x = rect.x;
           y = rect.y;
-          rectW = rect.width;
-          // console.log(rectW);
         });
       });
-      var gui = new dat.GUI();
-      gui.add(tracker, 'edgesDensity', 0.1, 0.5).step(0.01);
-      gui.add(tracker, 'initialScale', 1.0, 10.0).step(0.1);
-      gui.add(tracker, 'stepSize', 1, 5).step(0.1);
     };
     // Add an event listener
     document.addEventListener("name-of-event", function(e) {
       var div = document.getElementsByClassName('textbubble')[0];
-      var trueX = (3.35 * x + 600) * (rectW/105);
+      var trueX = (3.35 * x + 600);
       var trueY = (3.35 * y + 220);
       trueX += "px";
       trueY += "px";
@@ -202,7 +197,7 @@ function setTranscription(final_transcript){
             recognizing = true;
         };
 
-    
+
 
         speech.onresult = function(event) {
           // When recognition produces result
@@ -233,7 +228,10 @@ function setTranscription(final_transcript){
             div.innerHTML = final_transcript;
             div.className = "transcriptInner";
 
+
+
             document.getElementById("transcript").appendChild(div);
+            
           }
         };
 
