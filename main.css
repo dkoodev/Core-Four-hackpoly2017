@@ -47,29 +47,9 @@ body {
     top: 5px;
 }
 
-.textbubble {
-    position: fixed;
-    padding: 5px;
-    background-color: white;
-    border-style: solid;
-    border-color: black;
-    border-radius: 5px;
-    color: black;
-}
-
 #test {
     position: relative;
     color: red;
-}
-
-#speech {
-    background-color: white;
-    color: black;
-}
-
-#interim {
-    background-color: white;
-    color: black;
 }
 
 /* styling added */
@@ -83,23 +63,18 @@ body {
     font-family: futura;
     letter-spacing: 0.5px;
 
-    padding: 10px;
     position: fixed;
-    width: 50px;
     border: 2px solid black;
     border-radius: 5px;
     color: black;
+    padding: 5px;
+    border-style: solid;
+    border-color: black;
 }
 
-.textbubble:after {
-  content: "";
-  display: block; /* reduce the damage in FF3.0 */
-  position: absolute;
-  bottom: -15px;
-  left: 10px;
-  width: 0;
-  border-width: 15px 10px 0;
-  border-style: solid;
-  border-color: #F9F2DF transparent;
-  border: 2px solid black;
+#transcript {
+    margin: 10px;
+    line-height: 20px;
+    color: white;
+    width: 20%;
 }

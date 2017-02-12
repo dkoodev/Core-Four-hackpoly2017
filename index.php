@@ -29,7 +29,7 @@
     </div>
   </div>
 
-  <div class="textbubble"></div>
+  <div id="transcript"></div>
 
   <span class="textbubble" id="speech"></span>
   <span class="textbubble" id="interim"></span>
@@ -157,6 +157,10 @@
           }
           transcription.innerHTML = final_transcript;
           interim_span.innerHTML = interim_transcript;
+          if(final_transcript != "") {
+            var temp = final_transcript + "<br><br>" + document.getElementById("transcript").innerHTML;
+            document.getElementById("transcript").innerHTML = temp;
+          }
         };
 
         speech.onerror = function(event) {
