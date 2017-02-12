@@ -1,3 +1,8 @@
+@font-face {
+    font-family: futura;
+    src: url(Futura.ttc);
+}
+
 html {
     overflow: hidden;
 }
@@ -73,21 +78,19 @@ body {
     border-radius: 5px;
 }
 
-.transcriptContainer {
-    height: 100%;
-    width: 150px;
-    background-color: blue;
-    font-family: futura;
-}
 
 #speechlog {
     background-color: #002B36;
     padding: 10px;
     color: white;
+    padding-top: 17px;
+    margin-top: 10px;
+
 
 }
 
 #transcript {
+    overflow-y: scroll;
     margin: 10px;
     color: black;
     width: 22%;
@@ -97,12 +100,13 @@ body {
     background: -o-linear-gradient(#E64A2D, #ECA534); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(#E64A2D, #ECA534); /* For Firefox 3.6 to 15 */
     background: linear-gradient(#E64A2D, #ECA534);
+    padding-bottom: 50px;
 }
 
 .transcriptInner {
     color: black;
     background-color: white;
-    margin: 5px 10px;
+    margin: 5px 14px 5px 10px;
     padding: 7px;
     border-radius: 5px;
 
@@ -115,7 +119,7 @@ body {
 .transcriptTranslation {
     color: black;
     background-color: ;
-    margin: 5px 10px 5px 25px;
+    margin: 5px 14px 5px 25px;
     padding: 7px;
     border-radius: 5px;
 
@@ -124,13 +128,21 @@ body {
     letter-spacing: 0.5px;
 }
 
-#lang_select {
+#langContainer {
     position: absolute;
-    bottom: 10px;
-    left: 10px;
-    font-size: 14px;
-    width: 20%;
+    bottom: 0px;
+    left: 0px;
+    width: 22%;
+    background-color: black;
 }
+#lang_select {
+    margin: 20px 10px;
+    font-size: 14px;
+    width: 90%;
+    font-family: futura;
+    text-align: center;
+}
+
 
 #translatedText {
     color: white;
