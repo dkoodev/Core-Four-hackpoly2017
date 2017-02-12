@@ -13,6 +13,14 @@
   </style>
 </head>
 <body>
+  <select id="lang_select" onchange="lang_change()">
+    <option value="1">English</option>
+    <option value="2">Chinese (Simplified)</option>
+    <option value="3">Spanish</option>
+    <option value="4">French</option>
+  </select>
+
+<div id="message"></div>
 
   <div class="demo-frame">
     <div class="demo-container">
@@ -45,6 +53,23 @@
 
   var x;
   var y;
+
+  var language = "en-US";
+
+  function lang_change() {
+    if (document.getElementById("lang_select").value = "1"){
+        language = "en-US";
+    }     
+    else if (document.getElementById("lang_select").value = "2"){
+        language = "zh-TW";
+    }  
+    else if (document.getElementById("lang_select").value = "3"){
+        language = "es";
+    }  
+    else if (document.getElementById("lang_select").value = "4"){
+        language = "fr";
+    }        
+}
 
     window.onload = function() {
       var video = document.getElementById('video');
@@ -109,7 +134,7 @@
 
         speech.continuous = true;
         speech.interimResults = true;
-        speech.lang = 'en-US'; // check google web speech example source for more lanuages
+        speech.lang = language; // check google web speech example source for more lanuages
         speech.start(); //enables recognition on default
 
         speech.onstart = function() {
