@@ -123,6 +123,8 @@
           context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
           x = rect.x;
           y = rect.y;
+          rectW = rect.width;
+          console.log(rectW);
         });
       });
       var gui = new dat.GUI();
@@ -133,8 +135,8 @@
     // Add an event listener
     document.addEventListener("name-of-event", function(e) {
       var div = document.getElementsByClassName('textbubble')[0];
-      var trueX = 2.2 * x + 500;
-      var trueY = 2.2 * y + 200;
+      var trueX = (3.35 * x + 600) * (rectW/105);
+      var trueY = (3.35 * y + 220);
       trueX += "px";
       trueY += "px";
       $(".textbubble").animate({top: trueY, left: trueX}, 50);
