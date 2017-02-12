@@ -1,6 +1,3 @@
-
-
-
 <!doctype html>
 <html>
 <head>
@@ -12,6 +9,7 @@
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script src="../build/tracking-min.js"></script>
   <script src="../build/data/face-min.js"></script>
+  <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
   <style>
   video, canvas {
     position: absolute;
@@ -39,6 +37,13 @@
       <option value="zh-CN">Chinese (Simplified)</option>
       <option value="es">Spanish</option>
       <option value="fr">French</option>
+      <option value="de">German</option>
+      <option value="hi">Hindi</option>
+      <option value="la">Latin</option>
+      <option value="el">Greek</option>
+      <option value="ja">Japanese</option>
+      <option value="ko">Korea</option>
+      <option value="ru">Russian</option>
     </select>
   <h3 class="direction">Target Language:</h3>
     <select id="lang_select_target" value="es">
@@ -46,6 +51,13 @@
       <option value="zh-CN">Chinese (Simplified)</option>
       <option value="es">Spanish</option>
       <option value="fr">French</option>
+      <option value="de">German</option>
+      <option value="hi">Hindi</option>
+      <option value="la">Latin</option>
+      <option value="el">Greek</option>
+      <option value="ja">Japanese</option>
+      <option value="ko">Korea</option>
+      <option value="ru">Russian</option>
     </select>
   </div>
 
@@ -61,6 +73,11 @@
 
 <script>
 
+var target;
+var real_obj;
+
+var speakers = {"en": "US English Female", "ko": "Korean Female", "zh-CN": "Chinese Female", "es": "Spanish Female", "fr": "French Female", "de": "Deutsch Female", "hi": "Hindi Female", "la": "Latin Female", "el": "Greek Female", "ja": "Japanese Female", "ru": "Russian Female"};
+
 function httpGetAsync(theUrl, callback)
 {
     var xmlHttp = new XMLHttpRequest();
@@ -70,6 +87,11 @@ function httpGetAsync(theUrl, callback)
     }
     xmlHttp.open("GET", theUrl, true); // true for asynchronous 
     xmlHttp.send(null);
+    real_obj += "";
+    setTimeout(function() {
+      var temp = speakers[target];
+      responsiveVoice.speak(document.getElementById('speech').innerHTML, temp);
+    }, 500);
 }
 
 function saveConvo(obj) {
@@ -81,15 +103,13 @@ function saveConvo(obj) {
 
 function setTranscription(final_transcript){
   transcription = document.getElementById('speech');
-
   obj = JSON.parse(final_transcript);
   real_obj = obj['data']['translations'][0]['translatedText'];
-  real_obj.replace('&#39;', '');
+  real_obj = real_obj.replace('&#39;', '');
   console.log(real_obj.length-1);
   transcription.innerHTML = real_obj;
   console.log(real_obj);
   saveConvo(real_obj);
-
 }
 
 // { "data": { "translations": [ { "translatedText": "'" } ] } }
@@ -105,7 +125,7 @@ function setTranscription(final_transcript){
   var x;
   var y;
 
-  var language = "es";
+  var language = "en";
 
   // $(function () {
   //       $("#lang_select").change(function () {
@@ -194,7 +214,7 @@ function setTranscription(final_transcript){
           // main for loop for final and interim results
           for (var i = event.resultIndex; i < event.results.length; ++i) {
             var source = document.getElementById("lang_select").value;
-            var target = document.getElementById("lang_select_target").value;
+            target = document.getElementById("lang_select_target").value;
             if (event.results[i].isFinal) {
               document.getElementById('interim').innerHTML = "";
               final_transcript += event.results[i][0].transcript;
@@ -202,7 +222,10 @@ function setTranscription(final_transcript){
               query=encodeURIComponent(query.trim());
               var x = 'https://translation.googleapis.com/language/translate/v2?key=AIzaSyCa-LCaNth2vVBexvnQtja_wvXNp5rozhQ&source='+source+'&target='+target+ '&q=' + query+'\'';
               console.log(x);
-              httpGetAsync(x, setTranscription);
+              if(target != source) {
+                httpGetAsync(x, setTranscription);
+              }
+
             } else {
               document.getElementById('speech').innerHTML = "";
               interim_transcript += event.results[i][0].transcript;
@@ -216,9 +239,6 @@ function setTranscription(final_transcript){
             var div = document.createElement("div");
             div.innerHTML = final_transcript;
             div.className = "transcriptInner";
-
-
-
             document.getElementById("transcript").appendChild(div);
             
           }
