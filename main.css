@@ -90,10 +90,11 @@ body {
 }
 
 #transcript {
+    overflow-y: scroll;
     margin: 10px;
     color: black;
     width: 22%;
-    height: 110vh;
+    height: 100vh;
     font-family: futura;
     background: -webkit-linear-gradient(#E64A2D, #ECA534); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(#E64A2D, #ECA534); /* For Opera 11.1 to 12.0 */
@@ -127,15 +128,21 @@ body {
     letter-spacing: 0.5px;
 }
 
-#lang_select {
-    font-family: futura;
+#langContainer {
     position: absolute;
-    bottom: 10px;
-    left: 10px;
-    font-size: 16px;
-    width: 20%;
-    margin:10px;
+    bottom: 0px;
+    left: 0px;
+    width: 22%;
+    background-color: black;
 }
+#lang_select {
+    margin: 20px 10px;
+    font-size: 14px;
+    width: 90%;
+    font-family: futura;
+    text-align: center;
+}
+
 
 #translatedText {
     color: white;
