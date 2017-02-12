@@ -30,15 +30,16 @@
     </div>
   </div>
 
-  <div id="transcript"><h1 id="speechlog">Speech Log</h1></div>
+  <div id="transcript" style="overflow-y: scroll;"><h1 id="speechlog">Speech Log</h1></div>
 
-  <select id="lang_select" onchange="lang_change()">
-    <option value="1">English</option>
-    <option value="2">Chinese (Simplified)</option>
-    <option value="3">Spanish</option>
-    <option value="4">French</option>
-  </select>
-
+  <div id="langContainer">
+    <select id="lang_select" onchange="lang_change()">
+      <option value="1">English</option>
+      <option value="2">Chinese (Simplified)</option>
+      <option value="3">Spanish</option>
+      <option value="4">French</option>
+    </select>
+  </div>
 
   <span class="textbubble" id="speech"></span>
   <span class="textbubble" id="interim"></span>
