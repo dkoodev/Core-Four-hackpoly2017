@@ -6,16 +6,13 @@
 <head>
   <meta charset="utf-8">
   <title>Bubble Bot</title>
-  <link rel="stylesheet" href="assets/demo.css">
   <link rel="stylesheet" type="text/css" href="main.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="script.js"></script>
   <script scr="http://code.jquery.com/jquery-latest.min.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script src="../build/tracking-min.js"></script>
   <script src="../build/data/face-min.js"></script>
    <script src="../node_modules/dat.gui/build/dat.gui.min.js"></script>
-  <script src="assets/stats.min.js"></script>
   <style>
   video, canvas {
     position: absolute;
@@ -69,10 +66,9 @@ function setTranscription(final_transcript){
 
   obj = JSON.parse(final_transcript);
   real_obj = obj['data']['translations'][0]['translatedText'];
-  var res = real_obj.substring(0, real_obj.length-5);
-  console.log(real_obj.length-1);
-  transcription.innerHTML = res;
   real_obj.replace('&#39;', '');
+  console.log(real_obj.length-1);
+  transcription.innerHTML = real_obj;
   console.log(real_obj);
 
 }
@@ -217,24 +213,18 @@ function setTranscription(final_transcript){
           for (var i = event.resultIndex; i < event.results.length; ++i) {
             if (event.results[i].isFinal) {
               final_transcript += event.results[i][0].transcript;
-
+              var query = final_transcript;
+              query=encodeURIComponent(query.trim());
+              var source = 'en';
+              var target = 'ko';
+              var x = 'https://translation.googleapis.com/language/translate/v2?key=AIzaSyCa-LCaNth2vVBexvnQtja_wvXNp5rozhQ&source='+source+'&target='+target+ '&q=' + query+'\'';
+              console.log(x);
+              httpGetAsync(x, setTranscription);
+              interim_span.innerHTML = interim_transcript;
             } else {
               interim_transcript += event.results[i][0].transcript;
             }
           }
-          var query = final_transcript;
-          query=encodeURIComponent(query.trim());
-          var source = 'en';
-          var target = 'ko';
-          var x = 'https://translation.googleapis.com/language/translate/v2?key=AIzaSyCa-LCaNth2vVBexvnQtja_wvXNp5rozhQ&source='+source+'&target='+target+ '&q=' + query+'\'';
-          console.log(x);
-          httpGetAsync(x, setTranscription);
-
-          // httpGetAsync(theUrl, callback);
-          // transcription.innerHTML 
-          interim_span.innerHTML = interim_transcript;
-
-          // socket.emit('send message', final_transcript);
 
 
           if(final_transcript != "") {
