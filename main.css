@@ -88,7 +88,7 @@ body {
 }
 #speechlog {
     position: fixed;
-    width: 262px;
+    width: 271px;
     background-color: #002B36;
     padding: 10px;
     color: white;
@@ -96,10 +96,12 @@ body {
     margin-top: 10px;
     letter-spacing: 1px;
     border-bottom: 2px solid white;
+    font-family: futura;
 }
 
 #transcript {
     overflow-y: scroll;
+    padding-top: 90px;
     margin: 10px;
     color: black;
     width: 22%;
@@ -110,6 +112,10 @@ body {
     background: -moz-linear-gradient(#E64A2D, #ECA534); /* For Firefox 3.6 to 15 */
     background: linear-gradient(#E64A2D, #ECA534);
     padding-bottom: 50px;
+}
+
+#speechtitle {
+    padding-left: 10px;
 }
 
 .transcriptInner {
@@ -145,10 +151,10 @@ body {
     background-color: black;
     transition: all 0.4s ease-in-out;
 
-    background: -webkit-linear-gradient(#EB9D33, #EAC851); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#EB9D33, #EAC851); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#EB9D33, #EAC851); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#EB9D33, #EAC851);
+    background: -webkit-linear-gradient(#EB9132, #EAC851); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#EB9132, #EAC851); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#EB9132, #EAC851); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#EB9132, #EAC851);
 
 }
 

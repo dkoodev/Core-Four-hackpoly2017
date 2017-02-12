@@ -30,7 +30,8 @@
     </div>
   </div>
 
-  <div id="transcript" style="overflow-y: scroll;"><h1 id="speechlog">speech log</h1></div>
+  <h1 id="speechlog"><span id="speechtitle">speech log<span></h1>
+  <div id="transcript" style="overflow-y: scroll;"></div>
 
   <div id="langContainer">
   <h3 class="direction">starting language:</h3>
