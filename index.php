@@ -5,6 +5,7 @@
   <title>Bubble Bot</title>
   <link rel="stylesheet" href="assets/demo.css">
   <link rel="stylesheet" type="text/css" href="main.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
   <style>
   video, canvas {
@@ -58,18 +59,47 @@
 
   var language = "en-US";
 
+  // $(function () {
+  //       $("#lang_select").change(function () {
+  //           var selectedText = $(this).find("option:selected").text();
+  //           var selectedValue = $(this).val();
+  //           alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+  //       });
+  //   });
+
   function lang_change() {
-    if (document.getElementById("lang_select").value = "1"){
+    if (document.getElementById("lang_select").value == "1"){
         language = "en-US";
+        recognizing = false;
+        speech.lang = "en-US";
+        interim_span.innerHTML = '';
+        transcription.innerHTML = '';
+        speech.start();
     }     
-    else if (document.getElementById("lang_select").value = "2"){
+    else if (document.getElementById("lang_select").value == "2"){
         language = "zh-TW";
+        recognizing = false;
+        speech.lang = "zh-TW";
+        interim_span.innerHTML = '';
+        transcription.innerHTML = '';
+        speech.start();
+        
     }  
-    else if (document.getElementById("lang_select").value = "3"){
-        language = "es";
+    else if (document.getElementById("lang_select").value == "3"){
+        language = "es-MX";
+        recognizing = false;
+        speech.lang = "es-MX";
+        interim_span.innerHTML = '';
+        transcription.innerHTML = '';
+        speech.start();
     }  
-    else if (document.getElementById("lang_select").value = "4"){
-        language = "fr";
+    else if (document.getElementById("lang_select").value == "4"){
+        language = "fr-FR";
+        recognizing = false;
+        speech.lang = "fr-FR";
+        interim_span.innerHTML = '';
+        transcription.innerHTML = '';
+        speech.start();
     }        
 }
 
@@ -127,6 +157,7 @@
 
         function reset() {
           recognizing = false;
+          speech.lang = language;
           interim_span.innerHTML = '';
           transcription.innerHTML = '';
           speech.start();
@@ -176,6 +207,7 @@
 
         speech.onend = function() {
             // When recognition ends
+            speech.lang = language;
             reset();
         };
       }
