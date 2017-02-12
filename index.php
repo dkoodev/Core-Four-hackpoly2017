@@ -5,11 +5,6 @@
   <title>Bubble Bot</title>
   <link rel="stylesheet" href="assets/demo.css">
   <link rel="stylesheet" type="text/css" href="main.css">
-  <script src="../build/tracking-min.js"></script>
-  <script src="../build/data/face-min.js"></script>
-   <script src="../node_modules/dat.gui/build/dat.gui.min.js"></script>
-  <script src="assets/stats.min.js"></script>
-  <script src="../build/data/mouth.js"></script>
 
   <style>
   video, canvas {
@@ -26,7 +21,7 @@
     </div>
   </div>
 
-  <div class="textbubble">Hello</div>
+  <div class="textbubble"></div>
 
   <script>
   setInterval(function() {
@@ -34,7 +29,7 @@
     var event = new CustomEvent("name-of-event", { "detail": "Example of an event" });
     // Dispatch/Trigger/Fire the event
     document.dispatchEvent(event);
-  }, 5);
+  }, 100);
 
   var x;
   var y;
@@ -72,13 +67,24 @@
 
       var trueX = 2.2 * x + 500;
       var trueY = 2.2 * y + 200;
-      div.innerHTML = "Hello!";
-      div.style.top = trueY + "px";
-      div.style.left = trueX + "px";
-      document.body.appendChild(div);
+      trueX += "px";
+      trueY += "px";
+      console.log(trueX);
+      div.innerHTML = "Huriryituebytiuebyoriu";
+      // div.style.top = trueY;
+      // div.style.left = trueX;
+      $(".textbubble").animate({top: trueY, left: trueX}, 50);
+      // document.body.appendChild(div);
     });
 
   </script>
 
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="script.js"></script>
+<script src="../build/tracking-min.js"></script>
+<script src="../build/data/face-min.js"></script>
+<script src="../node_modules/dat.gui/build/dat.gui.min.js"></script>
+<script src="assets/stats.min.js"></script>
+<script src="../build/data/mouth.js"></script>
 </html>

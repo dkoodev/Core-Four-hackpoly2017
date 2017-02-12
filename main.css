@@ -49,12 +49,15 @@ body {
 
 .textbubble {
     position: fixed;
-    width: 50px;
-    height: 25px;
     padding: 5px;
     background-color: white;
     border-style: solid;
     border-color: black;
     border-radius: 5px;
     color: black;
+}
+
+#test {
+    position: relative;
+    color: red;
 }
