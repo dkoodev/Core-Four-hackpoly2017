@@ -32,19 +32,24 @@
 
   <div id="transcript"><h1 id="speechlog">Speech Log</h1></div>
 
-  <select id="lang_select" value="en" onchange="partialReset()">
-    <option value="en">English</option>
-    <option value="zh-CN">Chinese (Simplified)</option>
-    <option value="es">Spanish</option>
-    <option value="fr">French</option>
-  </select>
+  <div id="langContainer">
+  <h3 class="direction">Starting Language:</h3>
+    <select id="lang_select" value="en" onchange="partialReset()">
+      <option value="en">English</option>
+      <option value="zh-CN">Chinese (Simplified)</option>
+      <option value="es">Spanish</option>
+      <option value="fr">French</option>
+    </select>
+  <h3 class="direction">Target Language:</h3>
+    <select id="lang_select_target" value="es">
+      <option value="en">English</option>
+      <option value="zh-CN">Chinese (Simplified)</option>
+      <option value="es">Spanish</option>
+      <option value="fr">French</option>
+    </select>
+  </div>
 
-  <select id="lang_select_target" value="es" style="bottom: 100px; position: absolute">
-    <option value="en">English</option>
-    <option value="zh-CN">Chinese (Simplified)</option>
-    <option value="es">Spanish</option>
-    <option value="fr">French</option>
-  </select>
+
 
 
   <span class="textbubble" id="speech"></span>
