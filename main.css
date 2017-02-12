@@ -71,3 +71,35 @@ body {
     background-color: white;
     color: black;
 }
+
+/* styling added */
+
+.textbubble {
+    background: white; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(white, #F9F2DF); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(white, #F9F2DF); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(white, #F9F2DF); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(white, #F9F2DF);
+    font-family: futura;
+    letter-spacing: 0.5px;
+
+    padding: 10px;
+    position: fixed;
+    width: 50px;
+    border: 2px solid black;
+    border-radius: 5px;
+    color: black;
+}
+
+.textbubble:after {
+  content: "";
+  display: block; /* reduce the damage in FF3.0 */
+  position: absolute;
+  bottom: -15px;
+  left: 10px;
+  width: 0;
+  border-width: 15px 10px 0;
+  border-style: solid;
+  border-color: #F9F2DF transparent;
+  border: 2px solid black;
+}
