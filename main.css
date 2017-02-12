@@ -27,8 +27,8 @@ body {
 #video {
     position: absolute;
     top: 50%;
-    left: 64%;
-    transform: translate(-50%, -50%) scale(3.35);
+    left: 61%;
+    transform: translate(-50%, -50%) scale(3.45);
     /*width: 100%;
     height: 100%;*/
     /*transform:);
@@ -88,7 +88,7 @@ body {
 }
 #speechlog {
     position: fixed;
-    width: 271px;
+    width: 316px;
     background-color: #002B36;
     padding: 10px;
     color: white;
@@ -104,8 +104,8 @@ body {
     padding-top: 90px;
     margin: 10px;
     color: black;
-    width: 22%;
-    height: 60vh;
+    width: 23%;
+    height: 70vh;
     font-family: futura;
     background: -webkit-linear-gradient(#E64A2D, #ECA534); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(#E64A2D, #ECA534); /* For Opera 11.1 to 12.0 */
@@ -147,7 +147,7 @@ body {
     position: absolute;
     bottom: 0px;
     left: 0px;
-    width: 22%;
+    width: 326px;
     background-color: black;
     transition: all 0.4s ease-in-out;
 
