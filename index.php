@@ -72,7 +72,7 @@ function setTranscription(final_transcript){
   var res = real_obj.substring(0, real_obj.length-5);
   console.log(real_obj.length-1);
   transcription.innerHTML = res;
-
+  real_obj.replace('&#39;', '');
   console.log(real_obj);
 
 }
@@ -225,7 +225,7 @@ function setTranscription(final_transcript){
           var query = final_transcript;
           query=encodeURIComponent(query.trim());
           var source = 'en';
-          var target = 'es';
+          var target = 'ko';
           var x = 'https://translation.googleapis.com/language/translate/v2?key=AIzaSyCa-LCaNth2vVBexvnQtja_wvXNp5rozhQ&source='+source+'&target='+target+ '&q=' + query+'\'';
           console.log(x);
           httpGetAsync(x, setTranscription);
