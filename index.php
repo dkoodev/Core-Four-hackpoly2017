@@ -13,12 +13,6 @@
   </style>
 </head>
 <body>
-  <select id="lang_select" onchange="lang_change()">
-    <option value="1">English</option>
-    <option value="2">Chinese (Simplified)</option>
-    <option value="3">Spanish</option>
-    <option value="4">French</option>
-  </select>
 
 <div id="message"></div>
 
@@ -29,7 +23,15 @@
     </div>
   </div>
 
-  <div id="transcript"></div>
+  <div id="transcript"><h1 id="speechlog">Speech Log</h1></div>
+
+  <select id="lang_select" onchange="lang_change()">
+    <option value="1">English</option>
+    <option value="2">Chinese (Simplified)</option>
+    <option value="3">Spanish</option>
+    <option value="4">French</option>
+  </select>
+
 
   <span class="textbubble" id="speech"></span>
   <span class="textbubble" id="interim"></span>
@@ -158,8 +160,12 @@
           transcription.innerHTML = final_transcript;
           interim_span.innerHTML = interim_transcript;
           if(final_transcript != "") {
-            var temp = final_transcript + "<br><br>" + document.getElementById("transcript").innerHTML;
-            document.getElementById("transcript").innerHTML = temp;
+
+            var div = document.createElement("div");
+            div.innerHTML = final_transcript;
+            div.className = "transcriptInner";
+
+            document.getElementById("transcript").appendChild(div);
           }
         };
 
