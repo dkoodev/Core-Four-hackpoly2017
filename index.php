@@ -1,3 +1,24 @@
+<?php
+  if(!empty($_POST['inputspeech'])) {
+  $url = "https://translation.googleapis.com/language/translate/v2?key=AIzaSyBy7aXKPAUE2MZWx2AmDNvptHctn_Y2hiU&source=en&target=es&q=" . urlencode($_POST['inputspeech']);
+  $headers = @get_headers($url);
+  if(strpos($headers[0],'404') === false)
+  {
+    $user_json = file_get_contents($url);
+    $user_array = json_decode($user_json, true);
+    $user_title = $user_array['data']['translations'][0]['translatedText'];
+    echo '<div id="translatedText">' . $user_title . '</div>';
+  }
+  else
+  {
+    echo '<div id="title">Error! Also Nishir is awesome.</div>';
+  }
+  }
+
+?>
+
+
+
 <!doctype html>
 <html>
 <head>
@@ -45,6 +66,8 @@
 <script src="../node_modules/dat.gui/build/dat.gui.min.js"></script>
 <script src="assets/stats.min.js"></script>
 <script src="../build/data/mouth.js"></script>
+<script src="http://www.localeplanet.com/api/translate.js" /></script>
+<script src="http://www.example.com/text/en.js" /></script>
 
 <script>
   setInterval(function() {
