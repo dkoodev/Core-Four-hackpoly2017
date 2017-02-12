@@ -23,7 +23,19 @@
 
   <div class="textbubble"></div>
 
-  <script>
+  <span class="textbubble" id="speech"></span>
+  <span class="textbubble" id="interim"></span>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="script.js"></script>
+<script src="../build/tracking-min.js"></script>
+<script src="../build/data/face-min.js"></script>
+<script src="../node_modules/dat.gui/build/dat.gui.min.js"></script>
+<script src="assets/stats.min.js"></script>
+<script src="../build/data/mouth.js"></script>
+
+<script>
   setInterval(function() {
     // Create the event
     var event = new CustomEvent("name-of-event", { "detail": "Example of an event" });
@@ -64,27 +76,74 @@
     // Add an event listener
     document.addEventListener("name-of-event", function(e) {
       var div = document.getElementsByClassName('textbubble')[0];
-
       var trueX = 2.2 * x + 500;
       var trueY = 2.2 * y + 200;
       trueX += "px";
       trueY += "px";
-      console.log(trueX);
-      div.innerHTML = "Huriryituebytiuebyoriu";
-      // div.style.top = trueY;
-      // div.style.left = trueX;
       $(".textbubble").animate({top: trueY, left: trueX}, 50);
       // document.body.appendChild(div);
     });
 
   </script>
 
-</body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="script.js"></script>
-<script src="../build/tracking-min.js"></script>
-<script src="../build/data/face-min.js"></script>
-<script src="../node_modules/dat.gui/build/dat.gui.min.js"></script>
-<script src="assets/stats.min.js"></script>
-<script src="../build/data/mouth.js"></script>
+  <script>
+
+      if (!(window.webkitSpeechRecognition) && !(window.speechRecognition)) {
+        upgrade();
+      } else {
+        var recognizing,
+        transcription = document.getElementById('speech'),
+        interim_span = document.getElementById('interim');
+
+        interim_span.style.opacity = '0.5';
+
+
+        function reset() {
+          recognizing = false;
+          interim_span.innerHTML = '';
+          transcription.innerHTML = '';
+          speech.start();
+        }
+
+        var speech = new webkitSpeechRecognition() || speechRecognition();
+
+        speech.continuous = true;
+        speech.interimResults = true;
+        speech.lang = 'en-US'; // check google web speech example source for more lanuages
+        speech.start(); //enables recognition on default
+
+        speech.onstart = function() {
+            // When recognition begins
+            recognizing = true;
+        };
+
+        speech.onresult = function(event) {
+          // When recognition produces result
+          var interim_transcript = '';
+          var final_transcript = '';
+
+          // main for loop for final and interim results
+          for (var i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+              final_transcript += event.results[i][0].transcript;
+            } else {
+              interim_transcript += event.results[i][0].transcript;
+            }
+          }
+          transcription.innerHTML = final_transcript;
+          interim_span.innerHTML = interim_transcript;
+        };
+
+        speech.onerror = function(event) {
+            // Either 'No-speech' or 'Network connection error'
+            console.error(event.error);
+        };
+
+        speech.onend = function() {
+            // When recognition ends
+            reset();
+        };
+      }
+  </script>
+
 </html>

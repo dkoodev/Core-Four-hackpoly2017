@@ -61,3 +61,13 @@ body {
     position: relative;
     color: red;
 }
+
+#speech {
+    background-color: white;
+    color: black;
+}
+
+#interim {
+    background-color: white;
+    color: black;
+}
