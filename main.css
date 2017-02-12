@@ -78,13 +78,6 @@ body {
     border-radius: 5px;
 }
 
-.transcriptContainer {
-    height: 100%;
-    width: 150px;
-    background-color: blue;
-    font-family: futura;
-    overflow-y: scroll;
-}
 
 #speechlog {
     background-color: #002B36;
@@ -93,24 +86,26 @@ body {
     padding-top: 17px;
     margin-top: 10px;
 
+
 }
 
 #transcript {
     margin: 10px;
     color: black;
     width: 22%;
-    height: 100vh;
+    height: 110vh;
     font-family: futura;
     background: -webkit-linear-gradient(#E64A2D, #ECA534); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(#E64A2D, #ECA534); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(#E64A2D, #ECA534); /* For Firefox 3.6 to 15 */
     background: linear-gradient(#E64A2D, #ECA534);
+    padding-bottom: 50px;
 }
 
 .transcriptInner {
     color: black;
     background-color: white;
-    margin: 5px 10px;
+    margin: 5px 14px 5px 10px;
     padding: 7px;
     border-radius: 5px;
 
@@ -123,7 +118,7 @@ body {
 .transcriptTranslation {
     color: black;
     background-color: ;
-    margin: 5px 10px 5px 25px;
+    margin: 5px 14px 5px 25px;
     padding: 7px;
     border-radius: 5px;
 
@@ -133,11 +128,13 @@ body {
 }
 
 #lang_select {
+    font-family: futura;
     position: absolute;
-    bottom: 0px;
-    left: -1px;
+    bottom: 10px;
+    left: 10px;
     font-size: 16px;
-    width: 22%;
+    width: 20%;
+    margin:10px;
 }
 
 #translatedText {
