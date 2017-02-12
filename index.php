@@ -1,21 +1,3 @@
-<?php
-  if(!empty($_POST['inputspeech'])) {
-  $url = "https://translation.googleapis.com/language/translate/v2?key=AIzaSyBy7aXKPAUE2MZWx2AmDNvptHctn_Y2hiU&source=en&target=es&q=" . urlencode($_POST['inputspeech']);
-  $headers = @get_headers($url);
-  if(strpos($headers[0],'404') === false)
-  {
-    $user_json = file_get_contents($url);
-    $user_array = json_decode($user_json, true);
-    $user_title = $user_array['data']['translations'][0]['translatedText'];
-    echo '<div id="translatedText">' . $user_title . '</div>';
-  }
-  else
-  {
-    echo '<div id="title">Error! Also Nishir is awesome.</div>';
-  }
-  }
-
-?>
 
 
 
@@ -26,7 +8,13 @@
   <title>Bubble Bot</title>
   <link rel="stylesheet" href="assets/demo.css">
   <link rel="stylesheet" type="text/css" href="main.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="script.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="../build/tracking-min.js"></script>
+  <script src="../build/data/face-min.js"></script>
+   <script src="../node_modules/dat.gui/build/dat.gui.min.js"></script>
+  <script src="assets/stats.min.js"></script>
 
   <style>
   video, canvas {
@@ -59,17 +47,10 @@
   <span class="textbubble" id="interim"></span>
 
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="script.js"></script>
-<script src="../build/tracking-min.js"></script>
-<script src="../build/data/face-min.js"></script>
-<script src="../node_modules/dat.gui/build/dat.gui.min.js"></script>
-<script src="assets/stats.min.js"></script>
-<script src="../build/data/mouth.js"></script>
-<script src="http://www.localeplanet.com/api/translate.js" /></script>
-<script src="http://www.example.com/text/en.js" /></script>
+
 
 <script>
+  var rectW;
   setInterval(function() {
     // Create the event
     var event = new CustomEvent("name-of-event", { "detail": "Example of an event" });
@@ -130,7 +111,7 @@
       var video = document.getElementById('video');
       var canvas = document.getElementById('canvas');
       var context = canvas.getContext('2d');
-      var tracker = new tracking.ObjectTracker('face');
+      var tracker = new tracking.ObjectTracker("face");
       tracker.setInitialScale(4);
       tracker.setStepSize(2);
       tracker.setEdgesDensity(0.1);
@@ -147,7 +128,7 @@
           x = rect.x;
           y = rect.y;
           rectW = rect.width;
-          console.log(rectW);
+          // console.log(rectW);
         });
       });
       var gui = new dat.GUI();
@@ -166,9 +147,31 @@
       // document.body.appendChild(div);
     });
 
-  </script>
 
-  <script>
+    function translateString(untranslated, callback) {
+
+         var translated = $('#My-ID-Input').val();
+
+         $.ajax({
+            type: 'post',
+            url: '/',
+            data : {
+                 before_transate : untranslated
+            },
+            success: function(data) {
+                 var untranslated = data.before_transate;
+                 $('#My-ID-Input').val(untranslated);
+            },
+            error: function(err) {
+                 console.log(err);
+            }
+
+        });
+          // translated;
+          callback(insertString(translated));
+    }
+
+
 
       if (!(window.webkitSpeechRecognition) && !(window.speechRecognition)) {
         upgrade();
@@ -213,7 +216,8 @@
               interim_transcript += event.results[i][0].transcript;
             }
           }
-          transcription.innerHTML = final_transcript;
+          translateString(final_transcript);
+          // transcription.innerHTML 
           interim_span.innerHTML = interim_transcript;
           if(final_transcript != "") {
 
